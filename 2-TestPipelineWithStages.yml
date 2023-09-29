@@ -14,19 +14,19 @@ stages:
     steps:
     - bash: echo Build Stage - Job 2!
 
-- stage: Dev-Deploy
+- stage: DevDeploy
   jobs:
   - job: Job1
     steps:
     - bash: echo Dev Deploy Stage - Job 1!
 
-- stage: QA-Deploy
+- stage: QADeploy
   jobs:
   - job: Job1
     steps:
     - bash: echo QA Deploy Stage - Job 1!
 
-- stage: Prod-Deploy
+- stage: ProdDeploy
   jobs:
   - job: Job1
     steps:
