@@ -33,29 +33,29 @@ stages:
         PathtoPublish: '$(Build.ArtifactStagingDirectory)'
         ArtifactName: 'drop'
         publishLocation: 'Container'
-#   - job: Job2
-#     steps:
-#     - bash: echo Build Stage - Job 2!
+  - job: Job2
+    steps:
+    - bash: echo Build Stage - Job 2!
 
-# - stage: DevDeploy
-#   dependsOn: Build
-#   jobs:
-#   - job: Job1
-#     steps:
-#     - bash: echo Dev Deploy Stage - Job 1!
+- stage: DevDeploy
+  dependsOn: Build
+  jobs:
+  - job: Job1
+    steps:
+    - bash: echo Dev Deploy Stage - Job 1!
 
-# - stage: QADeploy
-#   dependsOn: Build
-#   jobs:
-#   - job: Job1
-#     steps:
-#     - bash: echo QA Deploy Stage - Job 1!
+- stage: QADeploy
+  dependsOn: Build
+  jobs:
+  - job: Job1
+    steps:
+    - bash: echo QA Deploy Stage - Job 1!
 
-# - stage: ProdDeploy
-#   dependsOn:
-#   - DevDeploy
-#   - QADeploy
-#   jobs:
-#   - job: Job1
-#     steps:
-#     - bash: echo Prod Deploy Stage - Job 1!
+- stage: ProdDeploy
+  dependsOn:
+  - DevDeploy
+  - QADeploy
+  jobs:
+  - job: Job1
+    steps:
+    - bash: echo Prod Deploy Stage - Job 1!
