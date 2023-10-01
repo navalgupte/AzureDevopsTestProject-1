@@ -10,7 +10,7 @@ stages:
   - job: Job1
     steps:
     - bash: echo Build Stage - Job 1!
-    - bash: echo ${Build.BuildNumber}
+    #- bash: echo ${Build.BuildNumber}
     - bash: echo ${Build.BuildId}
     - bash: echo ${Build.SourceBranchName}
     - bash: echo ${Build.SourcesDirectory}
