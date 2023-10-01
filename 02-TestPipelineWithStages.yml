@@ -17,29 +17,40 @@ stages:
     - bash: echo $(Build.ArtifactStagingDirectory)
     - bash: echo $(System.DefaultWorkingDirectory)
     - bash: ls -R $(System.DefaultWorkingDirectory)
-  - job: Job2
-    steps:
-    - bash: echo Build Stage - Job 2!
+    - bash: java -version
+    - bash: node --version
+    - bash: python --version
+    - bash: mvn -version
+    - task: CopyFiles@2
+      inputs:
+        SourceFolder: '$(System.DefaultWorkingDirectory)'
+        Contents: |
+          **/*.yml
+          **/*.tf
+        TargetFolder: '$(Build.ArtifactStagingDirectory)'
+#   - job: Job2
+#     steps:
+#     - bash: echo Build Stage - Job 2!
 
-- stage: DevDeploy
-  dependsOn: Build
-  jobs:
-  - job: Job1
-    steps:
-    - bash: echo Dev Deploy Stage - Job 1!
+# - stage: DevDeploy
+#   dependsOn: Build
+#   jobs:
+#   - job: Job1
+#     steps:
+#     - bash: echo Dev Deploy Stage - Job 1!
 
-- stage: QADeploy
-  dependsOn: Build
-  jobs:
-  - job: Job1
-    steps:
-    - bash: echo QA Deploy Stage - Job 1!
+# - stage: QADeploy
+#   dependsOn: Build
+#   jobs:
+#   - job: Job1
+#     steps:
+#     - bash: echo QA Deploy Stage - Job 1!
 
-- stage: ProdDeploy
-  dependsOn:
-  - DevDeploy
-  - QADeploy
-  jobs:
-  - job: Job1
-    steps:
-    - bash: echo Prod Deploy Stage - Job 1!
+# - stage: ProdDeploy
+#   dependsOn:
+#   - DevDeploy
+#   - QADeploy
+#   jobs:
+#   - job: Job1
+#     steps:
+#     - bash: echo Prod Deploy Stage - Job 1!
